@@ -1,34 +1,41 @@
-import { Add } from '@mui/icons-material';
+
+import { createTheme, ThemeProvider } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+
 import Feed from './Feed';
 import NavBar from './NavBar';
-import Profile from './Profile';
+
 import Sidebar from './Sidebar';
 
 const Home = () => {
+  const [mode, setMode] = useState("light")
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode
+    }
+  })
   return (
-    
-    <>
-      <Box>
-       <NavBar />
-      <Stack direction="row"
-        spacing={2}
-        // gap={2}
-        justifyContent="space-between"
-      >
-        <Sidebar />
-        <Feed/>
-      </Stack>
 
-     
-    </Box>
+    <ThemeProvider theme={darkTheme}>
+      <Box bgcolor={"background.default"} color={"text.primary"}>
+        <NavBar />
+        <Stack direction="row"
+          spacing={2}
+          justifyContent="space-between"
+        >
+          <Sidebar setMode={setMode} mode={mode}/>
+          <Feed />
+        </Stack>
 
-    </>
- 
 
-    
+      </Box>
+    </ThemeProvider>
+
+
+
+
+
   );
 };
 
