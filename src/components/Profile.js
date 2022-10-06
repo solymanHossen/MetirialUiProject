@@ -1,15 +1,23 @@
+import { Box } from '@mui/material';
 import React from 'react';
+import SingIn from '../Page/SingIn';
+import SingUp from '../Page/SingUp';
 import Layout from './Layout';
 
 const Profile = () => {
-  console.log("This is profile...")
+const isLogdin=false
   return (
     <Layout>
-      <div>
-        this is profile
-      </div>
+      <Box sx={{
+        position: "absolute",
+        left: "calc(50% - 200px)",
+        marginLeft: "0px"
+      }}>
+        {
+          isLogdin? <SingIn />:  <SingUp/>
+        }  
+      </Box>
     </Layout>
-    
   );
 };
 

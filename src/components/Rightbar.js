@@ -1,52 +1,58 @@
 import { Avatar, AvatarGroup, Box, Divider, ImageList, ImageListItem, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 import React from 'react';
 import img from "../Asset/project1.jpg"
+import useServices from '../Hooks/UseService';
 
 const Rightbar = () => {
+
+  const [services] = useServices();
+
   return (
     <Box
       flex={2}
       p={2}
       sx={{ display: { xs: "none", sm: "block" } }}
+
     >
-      <Box position="fixed" width={300}>
+
+           
+       <Box position="fixed" width={300}>
         <Typography variant='h6' fontWeight={100} mb={2}>
           Online Friends
+          
         </Typography>
-        <AvatarGroup max={6}>
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
-          <Avatar alt="Cindy Baker" src={img} />
+       <AvatarGroup max={6}>
+       {
+          services.map((post)=>{
+            const {img}=post;
+    
+            return  <Avatar alt="Cindy Baker" src={img} />
+        })}
         </AvatarGroup>
+     
         <Typography >
           Leatest Photos
         </Typography>
         <ImageList cols={3} rowHeight={100}>
-          <ImageListItem>
+        {
+          services.map((post)=>{
+            const {img}=post;
+         return <ImageListItem>
             <img src={img} alt="img" />
           </ImageListItem>
-          <ImageListItem>
-            <img src={img} alt="img" />
-          </ImageListItem>
-          <ImageListItem>
-            <img src={img} alt="img" />
-          </ImageListItem>
-          <ImageListItem>
-            <img src={img} alt="img" />
-          </ImageListItem>
+           })}
         </ImageList>
 
         {/* lest items */}
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-          <ListItem alignItems="flex-start">
+         
+        {
+          services.map((post)=>{
+            const {img}=post;
+         
+         return <ListItem alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <Avatar alt="Remy Sharp" src={img} />
             </ListItemAvatar>
             <ListItemText
               primary="Brunch this weekend?"
@@ -65,6 +71,11 @@ const Rightbar = () => {
               }
             />
           </ListItem>
+
+        })}
+
+
+
           <Divider variant="inset" component="li" />
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
@@ -113,6 +124,7 @@ const Rightbar = () => {
 
 
       </Box>
+     
 
     </Box>
   );

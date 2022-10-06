@@ -2,17 +2,31 @@ import React from 'react';
 import { Favorite, FavoriteBorder, MoreVert, Share } from '@mui/icons-material';
 import { Avatar, Box, Card, CardActions, CardContent, CardHeader, CardMedia, Checkbox, Collapse, IconButton, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
-import img from "../Asset/project2.jpg"
+
+
+import useServices from '../Hooks/UseService';
 
 
 
 
 const Post = () => {
-  return (
+ const [services] = useServices();
 
-    <Box
+
+  
+  return (
+   <>    {
+      services.map((post)=>{
+        // <h1>{post.number}</h1>
+        const {name,img}=post;
+
+     console.log(post)
+
+      
+    return <Box
       flex={4}
       p={2}
+      key={post.id}
     >
       <Card>
         <CardHeader
@@ -26,7 +40,7 @@ const Post = () => {
               <MoreVert />
             </IconButton>
           }
-          title="Solyman"
+          title={name}
           subheader="September 14, 2022"
         />
         <CardMedia
@@ -37,9 +51,7 @@ const Post = () => {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            This impressive paella is a perfect party dish and a fun meal to cook
-            together with your guests. Add 1 cup of frozen peas along with the mussels,
-            if you like.
+          {post.des}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -74,6 +86,14 @@ const Post = () => {
 
 
     </Box>
+
+}
+    
+      
+)
+}
+    </>
+
 
 
   );

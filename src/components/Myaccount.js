@@ -1,11 +1,12 @@
-import React from 'react';
-import Layout from './Layout';
 
+import React from 'react';
+import Feed from './Feed';
+import Layout from './Layout';
 const Myaccount = () => {
   return (
     <Layout>
     <div>
-      my account
+     <Feed/>
     </div>
     </Layout>
   );
